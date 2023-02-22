@@ -15,7 +15,19 @@
 
 
 
-    <li> {{$restaurant->title}} {{$restaurant->address}} {{$restaurant->work_start}} {{$restaurant->work_end}}</li>
+    <li>City: {{$restaurant->cities->title}} Name: {{$restaurant->title}} Address: {{$restaurant->address}} Work starts: {{$restaurant->work_start}} Work ends: {{$restaurant->work_end}}</li>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -36,5 +48,7 @@
 
     @endforelse
 </ul>
+
+
 
 @endsection

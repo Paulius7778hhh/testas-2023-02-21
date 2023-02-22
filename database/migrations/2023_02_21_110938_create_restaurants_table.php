@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title', 50)->unique();
             $table->string('address', 100)->unique();
-            $table->date('work_start');
-            $table->date('work_end');
+            $table->text('work_start', 60);
+            $table->text('work_end', 60);
             $table->unsignedBigInteger('city_id');
             $table->foreign('city_id')->references('id')->on('cities');
             $table->timestamps();

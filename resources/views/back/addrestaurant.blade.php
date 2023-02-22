@@ -32,10 +32,10 @@
     <label for="address">Address</label>
     <input type="text" name="address" value="">
     <label for="work_start">Working begins</label>
-    <input type="date" name="work_start" value="">
+    <input type="text" name="work_start" value="">
     <label for="work_end">Working ends</label>
 
-    <input type="date" name="work_end" value="">
+    <input type="text" name="work_end" value="">
     <button type='submit'>Add Restaurant</button>
     @csrf</form>
 

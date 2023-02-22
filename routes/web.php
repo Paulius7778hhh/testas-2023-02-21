@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend;
 use App\Http\Controllers\Frontend;
 use App\Http\Controllers\RestaurantController as RC;
 use App\Http\Controllers\CityController as C;
+use App\Http\Controllers\DishController as D;
 
 
 /*
@@ -34,6 +35,8 @@ Route::prefix('backend/station')->name('backend-')->group(function () {
     Route::post('/add-restaurant', [RC::class, 'store'])->name('restaurant-add');
     Route::get('/create-city', [C::class, 'create'])->name('city-create');
     Route::post('/add-city', [C::class, 'store'])->name('city-add');
+    Route::get('/create-dish', [D::class, 'create'])->name('dish-create');
+    Route::post('/add-dish', [D::class, 'store'])->name('dish-add');
     // Route::post('/addtolist', [RC::class, 'store'])->name('addtolist');
     // Route::get('/add', [AC::class, 'create'])->name('create')->middleware('roles:A');
     // Route::post('/store', [AC::class, 'store'])->name('store')->middleware('roles:A');

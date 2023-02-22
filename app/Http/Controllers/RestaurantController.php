@@ -15,11 +15,11 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(City $cities, Restaurant $restaurantlist)
+    public function index()
     {
         $title = 'Restaurant list';
-        $cities = City::all();
-        $restaurantlist = Restaurant::all();
+        $cities = City::all()->sortBy('title');
+        $restaurantlist = Restaurant::all()->sortBy('title');
         return view('back.rlist', [
             'title' => $title,
             'cities' => $cities,
