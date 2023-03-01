@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use App\Models\Restaurant;
+use App\Services\Rate;
 use Illuminate\Http\Request;
 
 
@@ -71,9 +72,11 @@ class DishController extends Controller
      * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function show(Dish $dish)
+    public function show(Dish $dish, Restaurant $restaurant)
     {
-        //
+        $title = 'Menu';
+        $dish = Dish::all();
+        return view('back.restaurantmenu', ['dishes' => $dish, 'title' => $title, 'restaurant' => $restaurant]);
     }
 
     /**
@@ -84,7 +87,13 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        //
+        $restaurants = Restaurant::all();
+        $title = 'edit dish';
+        return view('back.edit-dish', [
+            'title' => $title,
+            'restaurants' => $restaurants,
+            'dish' => $dish,
+        ]);
     }
 
     /**
@@ -96,7 +105,30 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        //
+        $dish->title = $request->edit_title;
+        $dish->restaurants_id = $request->edit_restaurants_id;
+        if ($request->file('edit_picture')) {
+            $picture = $request->file('edit_picture');
+            $ext = $picture->getClientOriginalExtension();
+
+            $name = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME);
+
+            $file = $name . '-' . rand(100000, 999999) . '.' . $ext;
+            if (isset($dish->picture)) {
+                $dish->nopic();
+            }
+            if (isset($dish->picture)) {
+                $dish->picture = null;
+            }
+            $picture->move(public_path() . '/dishpics/', $file);
+            //$picture->move(public_path() . '/pictures/' . $file);
+            $dish->edit_picture = '/dishpics/' . $file;
+        }
+        $dish->price = $request->edit_price;
+
+        $dish->save();
+
+        return redirect()->route('backend-rlist');
     }
 
     /**
@@ -107,6 +139,18 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        //
+
+        $dish->delete();
+        return redirect()->back();
+    }
+    public function submition(Request $request, Dish $dish)
+    {
+
+        $ids = $request->ids;
+        $rating = $request->rating;
+        $addrating = array_combine((array)$ids ?? [], (array)$rating ?? []);
+        $dish->rating[] += $addrating;
+        $dish->save();
+        return redirect()->back();
     }
 }

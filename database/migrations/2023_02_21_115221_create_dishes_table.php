@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('title', 60);
             $table->string('picture', 600)->nullable();
             $table->smallInteger('price')->unsigned();
+            $table->json('rating')->nullable();
             $table->unsignedBigInteger('restaurants_id');
-            $table->foreign('restaurants_id')->references('id')->on('restaurants')->add;
+            $table->foreign('restaurants_id')->references('id')->on('restaurants');
             $table->timestamps();
         });
     }

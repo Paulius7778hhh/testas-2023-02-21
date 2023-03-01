@@ -20,14 +20,15 @@
 
 <body>
 
-    <h1 class="container-fluid" style='translateX(-50%); margin:1% 0 0 44%; '>User</h1>
+    <h1 class="container-fluid" style='translateX(-50%); margin:1% 0 0 44%; '>{{ $title }}</h1>
 
 
 
 
 
 
-    <a class="navbar-brand btn btn-info" style='translateX(-50%); margin:1% 10px 10px 2%; ' href="{{ route('logout') }}" onclick="event.preventDefault();
+    <a class="navbar-brand btn btn-info" style='translateX(-50%); margin:1% 10px 10px 2%; ' href="{{ route('logout') }}"
+        onclick="event.preventDefault();
 
 
 
@@ -38,7 +39,7 @@
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf
     </form>
-
+    @include('front.frontmenu')
     <main class="py-4">
         @yield('content')
     </main>

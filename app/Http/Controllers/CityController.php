@@ -63,7 +63,8 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        //
+        $title = 'Edit City';
+        return view('back.edit-city', ['title' => $title, 'city' => $city]);
     }
 
     /**
@@ -75,7 +76,9 @@ class CityController extends Controller
      */
     public function update(Request $request, City $city)
     {
-        //
+        $city->title = $request->edit_title;
+        $city->save();
+        return redirect()->route('backend-rlist', [$city]);
     }
 
     /**
@@ -86,6 +89,11 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-        //
+        if (!$city->restaurants()->count()) {
+            $city->delete();
+            return redirect()->back();
+        } else {
+            return redirect()->back()->withErrors('This city still has active restaurants');
+        }
     }
 }

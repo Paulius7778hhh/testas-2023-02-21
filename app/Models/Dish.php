@@ -10,6 +10,9 @@ use function PHPUnit\Framework\fileExists;
 class Dish extends Model
 {
     use HasFactory;
+    protected $casts = [
+        'rating' => 'array'
+    ];
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class, 'restaurants_id', 'id');
@@ -17,6 +20,9 @@ class Dish extends Model
     public function nopic()
     {
         $pic = $this->picture;
+        if (fileExists(public_path() . $pic) !== null) {
+            $this->save();
+        }
         if (fileExists(public_path() . $pic)) {
             unlink(public_path() . $pic);
         }

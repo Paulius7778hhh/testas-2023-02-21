@@ -1,4 +1,4 @@
-@extends('back.app')
+@extends('front.app')
 
 @section('content')
     <ul style="width:70%; display: inline-block; float: right;">
@@ -7,10 +7,13 @@
                     <img src="{{ asset($dish->picture) }}">
                 @endif
 
-                <form action="{{ route('backend-edit-dish', $dish) }}" method="get"><button>edit</button>@csrf</form>
-                <form action="{{ route('backend-delete-dish', $dish) }}" method="post">
-                    <button>delete</button>@method('delete')@csrf
+                <form action="{{-- neuzbaigta --> {{ route('frontend-submition', $dish) }} --}}" method="post">
+                    <input type="number" min="1" max="5" name="rating" step="0.5">
+                    <input type="hidden" name="ids" value="{{ $user }}">
+                    <button type="submit" hidden>Rate</button>@csrf
                 </form>
+
+
             </li>
 
 

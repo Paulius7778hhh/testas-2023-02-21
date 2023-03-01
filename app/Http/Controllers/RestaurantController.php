@@ -80,8 +80,11 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //
+        $title = 'Edit Restaurant';
+        $cities = City::all();
+        return view('back.edit-restaurant', ['title' => $title, 'restaurant' => $restaurant, 'cities' => $cities,]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -92,7 +95,13 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        //
+        $restaurant->title = $request->edit_title;
+        $restaurant->city_id = $request->edit_city_id;
+        $restaurant->address = $request->edit_address;
+        $restaurant->work_start = $request->edit_work_start;
+        $restaurant->work_end = $request->edit_work_end;
+        $restaurant->save();
+        return redirect()->route('backend-rlist');
     }
 
     /**
@@ -103,6 +112,11 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        //
+        if (!$restaurant->dishes()->count()) {
+            $restaurant->delete();
+            return redirect()->back();
+        } else {
+            return redirect()->back()->withErrors('Restaurant still working,can`t delete working restaurant');
+        }
     }
 }
