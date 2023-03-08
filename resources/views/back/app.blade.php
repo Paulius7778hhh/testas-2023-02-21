@@ -18,9 +18,14 @@
     @vite(['resources/sass/back/app.scss', 'resources/js/back/app.js'])
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-    <h1 class="container-fluid" style='translateX(-50%); margin:1% 0 0 44%; '>{{$title}}</h1>
+    <div class="card-header">
+        <h1 class="d-flex justify-content-center mt-5 mb-5">{{$title}}</h1>
+
+
+    </div>
+
 
 
 
@@ -43,8 +48,13 @@
         @yield('content')
     </main>
     </div>
-    <footer class="card card-header col-md-5" style='translateX(-50%); margin:1% 0 0 28%; '>
+    <footer class="navbar-dark bg-primary justify-content-center mt-auto">
+        <nav class="pt-5 text-white nav justify-content-center mb-3">
+            <address>dsadas gfdgfdgfdg gfdgdfgfd ghdfhhg</address>
+        </nav>
+
     </footer>
+
 </body>
 
 </html>

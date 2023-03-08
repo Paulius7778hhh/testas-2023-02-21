@@ -20,7 +20,12 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-    <h1 class="container text-center">{{ $title }}</h1>
+    <div class="card-header">
+        <h1 class="d-flex justify-content-center mt-5 mb-5">{{$title}}</h1>
+
+
+    </div>
+
 
 
 
