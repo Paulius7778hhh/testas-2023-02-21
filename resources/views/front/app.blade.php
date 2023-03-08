@@ -18,33 +18,26 @@
     @vite(['resources/sass/front/app.scss', 'resources/js/front/app.js'])
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-    <h1 class="container-fluid" style='translateX(-50%); margin:1% 0 0 44%; '>{{ $title }}</h1>
-
-
+    <h1 class="container text-center">{{ $title }}</h1>
 
 
 
 
-    <a class="navbar-brand btn btn-info" style='translateX(-50%); margin:1% 10px 10px 2%; ' href="{{ route('logout') }}"
-        onclick="event.preventDefault();
 
 
 
-                                                     document.getElementById('logout-form').submit();">
-        {{ __('Logout') }}
-    </a>
-
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
     @include('front.frontmenu')
     <main class="py-4">
         @yield('content')
     </main>
     </div>
-    <footer class="card card-header col-md-5" style='translateX(-50%); margin:1% 0 0 28%; '>
+    <footer class="navbar-dark bg-dark justify-content-center mt-auto">
+        <nav class="pt-5 text-white nav justify-content-center mb-3">
+            <address>dsadas gfdgfdgfdg gfdgdfgfd ghdfhhg</address>
+        </nav>
+
     </footer>
 
 

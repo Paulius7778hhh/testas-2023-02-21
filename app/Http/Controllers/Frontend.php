@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\DB;
 
 class Frontend extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $title = 'Welcome User';
+        $user = Auth::user()->name;
+        $title = "Welcome " . $user;
         return view('front.index', ['title' => $title]);
     }
     public function show(Request $request)
